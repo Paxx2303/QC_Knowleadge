@@ -69,11 +69,7 @@
 
 ## 2. Decision Table (Bảng Quyết Định)
 
-**Mục tiêu**: Kiểm tra chức năng **Tạo Tài Khoản (Tạo TK)**
-
-- **Kết quả mong đợi**:
-  - **TC** = Thành công (Tạo tài khoản thành công)
-  - **TB** = Thất bại (Tạo tài khoản thất bại)
+**Mục tiêu**: Kiểm tra chức năng **Đăng kí vé**
 
 ### Decision Table 
 
