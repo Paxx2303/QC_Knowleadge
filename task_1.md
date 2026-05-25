@@ -4,30 +4,30 @@
 ##  Boundary Value Analysis
 **Trường kiểm thử: Tuổi**
 
-| Phân vùng     | Trạng thái | Khoảng giá trị |
-|---------------|------------|----------------|
-| Invalid       | Không hợp lệ | < 18          |
-| Valid         | Hợp lệ     | 18 - 69        |
-| Invalid       | Không hợp lệ | > 69          |
+ | Trạng thái | Khoảng giá trị |
+|------------|----------------|
+ |  **Invalid** | < 18          |
+| **Valid**     | 18 - 69        |
+| **Invalid** | > 69          |
 ##  Equivalence Partitioning (Phân vùng tương đương)
 **Trường kiểm thử: Email**
 
-| Phân vùng       | Trạng thái     | Mô tả / Ví dụ                              | Format đại diện                  |
-|-----------------|----------------|--------------------------------------------|----------------------------------|
-| **Invalid 1**   | Không hợp lệ   | Không có ký tự `@`                         | `usergmail.com`                  |
-| **Invalid 2**   | Không hợp lệ   | `@` ở đầu                                  | `@gmail.com`                     |
-| **Invalid 3**   | Không hợp lệ   | `@` ở cuối                                 | `user@`                          |
-| **Invalid 4**   | Không hợp lệ   | Nhiều ký tự `@`                            | `user@@gmail.com`                |
-| **Invalid 5**   | Không hợp lệ   | Không có phần domain (sau `@`)             | `user@`                          |
-| **Invalid 6**   | Không hợp lệ   | Không có phần mở rộng domain (.com, .vn..) | `user@gmail`                     |
-| **Invalid 7**   | Không hợp lệ   | Chứa ký tự không cho phép                  | `user#name@gmail.com`            |
-| **Valid**       | Hợp lệ         | Email đúng định dạng chuẩn                 | `user@example.com`<br>`test.user123@gmail.com.vn` |
+| Phân vùng     | Mô tả / Ví dụ                              | Format đại diện                  |
+|-----------------|--------------------------------------------|----------------------------------|
+| 1**   | Không có ký tự `@`                         | `usergmail.com`                  |
+| **Invalid 2**   | `@` ở đầu                                  | `@gmail.com`                     |
+| **Invalid 3**    | `@` ở cuối                                 | `user@`                          |
+| **Invalid 4**   | Nhiều ký tự `@`                            | `user@@gmail.com`                |
+| **Invalid 5**   | Không có phần domain (sau `@`)             | `user@`                          |
+| **Invalid 6**    | Không có phần mở rộng domain (.com, .vn..) | `user@gmail`                     |
+| **Invalid 7**     | Chứa ký tự không cho phép                  | `user#name@gmail.com`            |
+| **Valid**           | Email đúng định dạng chuẩn                 | `user@example.com`<br>`test.user123@gmail.com.vn` |
 
 **Trường kiểm thử: Password**
-| Phân vùng       | Trạng thái     | Mô tả / Ví dụ                              | Format đại diện                  |
-|-----------------|----------------|--------------------------------------------|----------------------------------|
-| **Invalid**   | Không hợp lệ   | Sai kích thước ( 6 - 12 kí tự)                         | usergmail.com (13 kí tự)             |
-| **Valid**       | Hợp lệ         |Đúng kích thước    ( 6 - 12 kí tự)              | 123456 |
+| Phân vùng        | Mô tả / Ví dụ                              | Format đại diện                  |
+|-----------------|--------------------------------------------|----------------------------------|
+| **Invalid**  | Sai kích thước ( 6 - 12 kí tự)                         | usergmail.com (13 kí tự)             |
+| **Valid**     |Đúng kích thước    ( 6 - 12 kí tự)              | 123456 |
 
 ## 2. Decision Table (Bảng Quyết Định)
 
@@ -54,18 +54,18 @@
 
 **Trường kiểm thử: Số vé**
 
-| Phân vùng     | Trạng thái | Khoảng số vế  |
-|---------------|------------|----------------|
-| Invalid       | Không hợp lệ | < 1          |
-| Valid         | Hợp lệ     | 1 - 10      |
-| Invalid       | Không hợp lệ | > 10        |
+| Phân vùng     | Khoảng số vế  |
+|---------------|----------------|
+| Invalid       | < 1          |
+| Valid           | 1 - 10      |
+| Invalid      | > 10        |
 
 **Trường kiểm thử: Thời gian đặt vé**
 
-| Phân vùng     | Trạng thái | Khoảng số vế  |
-|---------------|------------|----------------|
-| Invalid       | Không hợp lệ | 22h01' - 5h59' sáng hôm sau        |
-| Valid         | Hợp lệ     | 6h - 22h    |
+| Phân vùng    | Khoảng số vế  |
+|--------------|----------------|
+| Invalid      | 22h01' - 5h59' sáng hôm sau        |
+| Valid         | 6h - 22h    |
 
 ## 2. Decision Table (Bảng Quyết Định)
 
