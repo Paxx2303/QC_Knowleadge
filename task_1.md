@@ -26,8 +26,8 @@
 **Trường kiểm thử: Password**
 | Phân vùng       | Trạng thái     | Mô tả / Ví dụ                              | Format đại diện                  |
 |-----------------|----------------|--------------------------------------------|----------------------------------|
-| **Invalid **   | Không hợp lệ   | Sai kích thước                          | usergmail.com                  |
-| **Valid**       | Hợp lệ         |Đúng kích thước                  | 123456 |
+| **Invalid**   | Không hợp lệ   | Sai kích thước ( 6 - 12 kí tự)                         | usergmail.com (13 kí tự)             |
+| **Valid**       | Hợp lệ         |Đúng kích thước    ( 6 - 12 kí tự)              | 123456 |
 
 ## 2. Decision Table (Bảng Quyết Định)
 
@@ -52,7 +52,7 @@
 # Task 2 
 ## 1. Equivalence Partitioning (Phân vùng tương đương)
 
-**Trường kiểm thử: Số vé **
+**Trường kiểm thử: Số vé**
 
 | Phân vùng     | Trạng thái | Khoảng số vế  |
 |---------------|------------|----------------|
@@ -60,7 +60,7 @@
 | Valid         | Hợp lệ     | 1 - 10      |
 | Invalid       | Không hợp lệ | > 10        |
 
-**Trường kiểm thử: Thời gian đặt vé  **
+**Trường kiểm thử: Thời gian đặt vé**
 
 | Phân vùng     | Trạng thái | Khoảng số vế  |
 |---------------|------------|----------------|
@@ -79,9 +79,9 @@
 
 | Input          | Case 1 | Case 2 | Case 3 | Case 4 | 
 |----------------|--------|--------|--------|--------|
-| **Tuổi**       | Sai    | Đúng   | Sai    | Đúng   | 
-| **Email**      | Sai    | Sai    | Đúng   | Đúng   | 
-| **Tạo TK**     | **Thất bại** |**Thất bại** | **Thất bại** | **Thành công** |
+| **Số vé**       | Sai    | Đúng   | Sai    | Đúng   | 
+| **Thời gian đặt vé**      | Sai    | Sai    | Đúng   | Đúng   | 
+| **Đăng kí vé**     | **Thất bại** |**Thất bại** | **Thất bại** | **Thành công** |
 ### Giải thích:
 - **Case 4** là trường hợp duy nhất thành công (thời gian đúng + số vé đúng ).
 - Các trường hợp còn lại đều thất bại do ít nhất một điều kiện không thỏa mãn.
@@ -99,7 +99,7 @@
 | Input          | Case 1 | Case 2 |
 |----------------|--------|--------|
 | **OTP**      | Sai    | Đúng   |
-| **Đăng nhập thành công**     |  **Thất bại** | **Thành công** |
+| **Đăng nhập**     |  **Thất bại** | **Thành công** |
 
 # Task 4 
 
