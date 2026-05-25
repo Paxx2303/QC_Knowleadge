@@ -20,8 +20,8 @@
 
 **Execution Testing gồm**:
 - **Statement Coverage**: Tỉ lệ % của số dòng code đã test
-- **Branch Coverage**: Tỉ lệ các nhánh của decision tree được test
-- **Path Coverage**: Tỉ lệ các path đã test (mỗi path gồm statement và decision)
+- **Branch Coverage**: Tỉ lệ  % các nhánh của decision tree được test
+- **Path Coverage**: Tỉ lệ % các path đã test (mỗi path gồm statement và decision)
 
 ### 2. Black Box Testing
 Test với việc chỉ dùng UI/UX, đảm bảo kết quả nhận diện như mong muốn.
