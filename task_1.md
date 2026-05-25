@@ -50,11 +50,11 @@
 ---
 
 # Task 2 
-## 1. Equivalence Partitioning (Phân vùng tương đương)
+##   Boundary Value Analysis
 
 **Trường kiểm thử: Số vé**
 
-| Phân vùng     | Khoảng số vế  |
+| Biên     | Khoảng số vế  |
 |---------------|----------------|
 | Invalid       | < 1          |
 | Valid           | 1 - 10      |
@@ -62,7 +62,7 @@
 
 **Trường kiểm thử: Thời gian đặt vé**
 
-| Phân vùng    | Khoảng số vế  |
+| Biên    | Khoảng số vế  |
 |--------------|----------------|
 | Invalid      | 22h01' - 5h59' sáng hôm sau        |
 | Valid         | 6h - 22h    |
