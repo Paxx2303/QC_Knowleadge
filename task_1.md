@@ -33,9 +33,6 @@
 
 **Mục tiêu**: Kiểm tra chức năng **Tạo Tài Khoản (Tạo TK)**
 
-- **Kết quả mong đợi**:
-  - **TC** = Thành công (Tạo tài khoản thành công)
-  - **TB** = Thất bại (Tạo tài khoản thất bại)
 
 ### Decision Table
 
@@ -44,7 +41,7 @@
 | **Tuổi**       | Sai    | Đúng   | Sai    | Đúng   | Đúng   | Đúng   | Sai    | Sai    |
 | **Email**      | Sai    | Sai    | Đúng   | Đúng   | Đúng   | Sai    | Sai    | Đúng   |
 | **Password**   | Sai    | Đúng   | Đúng   | Sai    | Đúng   | Sai    | Đúng   | Sai    |
-| **Tạo TK**     | **TB** | **TB** | **TB** | **TB** | **TC** | **TB** | **TB** | **TB** |
+| **Tạo TK**     | **Thất bại** | **Thất bại** | **Thất bại** | **Thất bại** | **Thành công** | **Thất bại** | **Thất bại** | **Thất bại** |
 
 ### Giải thích:
 - **Case 5** là trường hợp duy nhất thành công (Tuổi đúng + Email đúng + Password đúng).
@@ -84,7 +81,7 @@
 |----------------|--------|--------|--------|--------|
 | **Tuổi**       | Sai    | Đúng   | Sai    | Đúng   | 
 | **Email**      | Sai    | Sai    | Đúng   | Đúng   | 
-| **Tạo TK**     | **TB** | **TB** | **TB** | **TC** |
+| **Tạo TK**     | **Thất bại** |**Thất bại** | **Thất bại** | **Thành công** |
 ### Giải thích:
 - **Case 4** là trường hợp duy nhất thành công (thời gian đúng + số vé đúng ).
 - Các trường hợp còn lại đều thất bại do ít nhất một điều kiện không thỏa mãn.
@@ -96,13 +93,13 @@
 |----------------|--------|--------|--------|--------|
 | **Email**      | Sai    | Sai    | Đúng   | Đúng   |
 | **Password**   | Sai    | Đúng   | Đúng   | Sai    | 
-| **Gửi OTP**     | **Không gửi OTP** | **Không gửi OTP** | **Không gửi OTP** | **Gửi OTP** | 
+| **Gửi OTP**     | **Không gửi OTP** | **Không gửi OTP** |**Gửi OTP**|   **Không gửi OTP**  | 
 
 **Nếu đăng nhập thành công**
 | Input          | Case 1 | Case 2 |
 |----------------|--------|--------|
 | **OTP**      | Sai    | Đúng   |
-| **Đăng nhập thành công**     | **TB** | **TC** |
+| **Đăng nhập thành công**     |  **Thất bại** | **Thành công** |
 
 # Task 4 
 
