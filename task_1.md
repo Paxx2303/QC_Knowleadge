@@ -95,7 +95,7 @@
 | **Password**   | Sai    | Đúng   | Đúng   | Sai    | 
 | **Gửi OTP**     | **Không gửi OTP** | **Không gửi OTP** |**Gửi OTP**|   **Không gửi OTP**  | 
 
-**Nếu đăng nhập thành công**
+**Nếu đăng nhập thành công và đang chờ OTP**
 | Input          | Case 1 | Case 2 |
 |----------------|--------|--------|
 | **OTP**      | Sai    | Đúng   |
@@ -105,7 +105,7 @@
 
 ##  Equivalence Partitioning & Boundary Value Analysis
 
-| Test ID | Distance (km) | VIP? | Expected Fare (VND) |         Loại giá                   |
+| Test ID | Distance (km) | VIP | Expected Fare (VND) |         Loại giá                   |
 |---------|---------------|------|---------------------|--------------------------|
 | TC01    | 0             | No   | 0 hoặc Error        |  Edge case                |
 | TC02    | 1-5           | No   | 10.000              |  Tier 1       |
@@ -115,13 +115,13 @@
 
 ### 2. Decision Table
 
-| Test Case | Khoảng Km     | VIP    | Expected Result          |
+| Test Case | Distance (km)    | VIP    | Expected Result          |
 |-----------|---------------|--------|--------------------------|
 | DT01      | < 1           | Yes/No | 0                |
 | DT02      | 1 - 5         | No     | 10.000 × km              |
 | DT03      | 1 - 5         | Yes    | 10.000 × km × 0.9        |
 | DT04      | 6 - 14        | No     | (5×10.000) + (km-5)×8.000      |
-| DT05      | 6 - 14        | Yes    | [(5×10.000) + (km-5)×8.000] × 0.9 |
+| DT05      | 6 - 14        | Yes    | ((5×10.000) + (km-5)×8.000) × 0.9 |
 | DT06      | > 14          | No     | (5×10.000) + (9×8.000) + (km-14)×6.000 |
 | DT07      | > 14          | Yes    | ((5×10.000) + (9×8.000) + (km-14)×6.000) × 0.9              |
 
