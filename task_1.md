@@ -4,7 +4,7 @@
 ##  Boundary Value Analysis
 **Trường kiểm thử: Tuổi**
 
- | Trạng thái | Khoảng giá trị |
+ | Biên | Khoảng giá trị |
 |------------|----------------|
  |  **Invalid** | < 18          |
 | **Valid**     | 18 - 69        |
