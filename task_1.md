@@ -96,6 +96,9 @@
 |----------------|--------|--------|
 | **OTP**      | Sai    | Đúng   |
 | **Đăng nhập**     |  **Thất bại** | **Thành công** |
+### Giải thích:
+- **Case 2** là trường hợp thành công vì User đã đăng nhập thành công trước đó sau đó điền đúng OTP.
+
 
 # Task 4 
 
