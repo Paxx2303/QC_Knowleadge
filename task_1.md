@@ -1,7 +1,7 @@
 # Task 1: Test Case - Equivalence Partitioning & Decision Table
 
-## 1. Equivalence Partitioning (Phân vùng tương đương)
 
+##  Boundary Value Analysis
 **Trường kiểm thử: Tuổi**
 
 | Phân vùng     | Trạng thái | Khoảng giá trị |
@@ -9,7 +9,7 @@
 | Invalid       | Không hợp lệ | < 18          |
 | Valid         | Hợp lệ     | 18 - 69        |
 | Invalid       | Không hợp lệ | > 69          |
-
+##  Equivalence Partitioning (Phân vùng tương đương)
 **Trường kiểm thử: Email**
 
 | Phân vùng       | Trạng thái     | Mô tả / Ví dụ                              | Format đại diện                  |
