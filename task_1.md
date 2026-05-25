@@ -14,7 +14,7 @@
 
 | Phân vùng     | Mô tả / Ví dụ                              | Format đại diện                  |
 |-----------------|--------------------------------------------|----------------------------------|
-| 1**   | Không có ký tự `@`                         | `usergmail.com`                  |
+| **Invalid 1**   | Không có ký tự `@`                         | `usergmail.com`                  |
 | **Invalid 2**   | `@` ở đầu                                  | `@gmail.com`                     |
 | **Invalid 3**    | `@` ở cuối                                 | `user@`                          |
 | **Invalid 4**   | Nhiều ký tự `@`                            | `user@@gmail.com`                |
