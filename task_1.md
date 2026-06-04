@@ -1,52 +1,115 @@
-| STT | Câu hỏi | Insight | ISO 37122 Sector | ISO 37122 Indicator | ISO 37122 ID | Phân loại Truy vấn (AC3) | ESG | Nhóm nghiệp vụ/dữ liệu | Cách tính | Nguồn dữ liệu | Khả thi |
-|-----|---------|---------|------------------|---------------------|--------------|---------------------------|-----|------------------------|-----------|---------------|---------|
-| 1 | Tòa nhà [tên] hiện có bao nhiêu thiết bị FCU_FAN_COIL đang hoạt động? | Kiểm tra tình trạng hệ thống điều hòa | Housing | Percentage of houses with smart energy meters | 12.1 | Truy vấn số liệu | S | Cơ sở hạ tầng | Count thiết bị FCU_FAN_COIL có Status = Active | Device Status | 1 |
-| 2 | Chất lượng không khí (CO2) hiện tại tại tầng [số] tòa nhà [tên] như thế nào? | Giám sát chất lượng không khí trong nhà | Environment and climate change | Percentage of public and private building equipped for monitoring indoor air quality | 8.3 | Truy vấn số liệu | E | Môi trường | Lấy giá trị CO2_SENSOR mới nhất | CO2_SENSOR | 1 |
-| 3 | Danh sách các ACB_BREAKER đang bị trip hoặc lỗi | Phát hiện sự cố điện nhanh chóng | Energy | Percentage of street lighting that has been refurbished | 7.7 | Truy vấn số liệu | E | Năng lượng | Lọc ACB_BREAKER có Status = Trip / Error | ACB_BREAKER | 1 |
-| 4 | Mực nước bồn chứa WATER_TANK_LEVEL hiện tại của tòa nhà [tên]? | Giám sát nguồn nước dự phòng | Water | Number of real-time environmental water quality monitoring stations | 23.2 | Truy vấn số liệu | E | Nước | Lấy giá trị % hoặc m³ mới nhất | WATER_TANK_LEVEL | 1 |
-| 5 | Tòa nhà [tên] có bao nhiêu camera Hikvision đang offline? | Kiểm tra hệ thống an ninh | Safety | Percentage of the city area covered by digital surveillance cameras | 15.1 | Truy vấn số liệu | G | An ninh | Count Hikvision Camera có Status = Offline | Hikvision Camera | 1 |
-| 6 | Xu hướng tiêu thụ điện của CHILLER trong 7 ngày qua? | Phân tích hiệu suất làm lạnh | Energy | Storage capacity of the city’s energy grid per total city energy consumption | 7.5 | Xu hướng | E | Năng lượng | Tổng kWh theo ngày/tuần | CHILLER + ACB_BREAKER | 1 |
-| 7 | Danh sách Face Terminal nào đang có vấn đề nhận diện? | Đánh giá hệ thống kiểm soát ra vào | Safety | Percentage of the city area covered by digital surveillance cameras | 15.1 | Truy vấn số liệu | G | An ninh | Lọc Face Terminal có Status = Error | Face Terminal | 1 |
-| 8 | CO2_SENSOR tại khu vực [vị trí] có vượt ngưỡng an toàn không? | Cảnh báo chất lượng không khí | Environment and climate change | Percentage of public and private building equipped for monitoring indoor air quality | 8.3 | Truy vấn số liệu | E | Môi trường | So sánh giá trị hiện tại với ngưỡng | CO2_SENSOR | 1 |
-| 9 | Top 5 khu vực có FCU_FAN_COIL chạy nhiều nhất trong tháng này? | Tối ưu hóa năng lượng điều hòa | Energy | Percentage of the city’s electricity that is produced using distributed generation | 7.4 | Top/bottom | E | Năng lượng | Tổng giờ chạy của FCU | FCU_FAN_COIL | 1 |
-| 10 | Trạng thái hiện tại của SUPPLY_PRESSURIZATION_FAN tại tòa nhà [tên]? | Kiểm tra hệ thống thông gió | Environment and climate change | Percentage of public and private building equipped for monitoring indoor air quality | 8.3 | Truy vấn số liệu | E | Môi trường | Lấy Status mới nhất | SUPPLY_PRESSURIZATION_FAN | 1 |
-| 11 | Danh sách tất cả thiết bị đang ở trạng thái Error hoặc Maintenance | Ưu tiên bảo trì thiết bị | Housing | Percentage of houses with smart energy meters | 12.1 | Truy vấn số liệu | S | Cơ sở hạ tầng | Union tất cả thiết bị có Status ≠ Active | All Devices | 1 |
-| 12 | Tiêu thụ điện của EXHAUST_SMOKE_FAN trong 24 giờ qua? | Giám sát hệ thống hút khói | Energy | Storage capacity of the city’s energy grid per total city energy consumption | 7.5 | Truy vấn số liệu | E | Năng lượng | Tổng kWh trong 24h | EXHAUST_SMOKE_FAN + ACB_BREAKER | 1 |
-| 13 | Khu vực nào có nồng độ CO2 cao nhất hiện tại? | Phát hiện khu vực kém thông thoáng | Environment and climate change | Number of real-time remote air quality monitoring stations | 8.2 | Top/bottom | E | Môi trường | Sort CO2_SENSOR theo giá trị giảm dần | CO2_SENSOR | 1 |
-| 14 | Camera Hikvision nào có độ chiếm dụng RAM cao? | Dự báo sự cố camera | Safety | Percentage of the city area covered by digital surveillance cameras | 15.1 | Truy vấn số liệu | G | An ninh | So sánh RAM hiện tại với ngưỡng | Hikvision Camera | 1 |
-| 15 | WATER_TANK_LEVEL có đang giảm bất thường trong 3 ngày qua không? | Cảnh báo rò rỉ hoặc sử dụng cao | Water | Number of real-time environmental water quality monitoring stations | 23.2 | Xu hướng | E | Nước | Phân tích xu hướng mực nước | WATER_TANK_LEVEL | 1 |
-| 16 | Danh sách SMART_BUTTON nào chưa được sử dụng trong 30 ngày qua? | Kiểm tra thiết bị ít hoạt động | Housing | Percentage of houses with smart energy meters | 12.1 | Truy vấn số liệu | S | Cơ sở hạ tầng | Lọc theo Last Active | SMART_BUTTON | 1 |
-| 17 | Hiệu suất làm lạnh của CHILLER so với tuần trước? | Đánh giá hiệu quả hệ thống HVAC | Energy | Storage capacity of the city’s energy grid per total city energy consumption | 7.5 | Xu hướng | E | Năng lượng | So sánh kWh và công suất | CHILLER | 1 |
-| 18 | Tòa nhà [tên] có bao nhiêu 3IN1 ENV SENSOR đang hoạt động? | Giám sát môi trường tổng hợp | Environment and climate change | Percentage of public and private building equipped for monitoring indoor air quality | 8.3 | Truy vấn số liệu | E | Môi trường | Count 3IN1 ENV SENSOR Active | 3IN1 ENV SENSOR | 1 |
-| 19 | Danh sách ACB_BREAKER nào thường xuyên trip trong tháng qua? | Phát hiện thiết bị điện yếu | Energy | Percentage of the city’s electricity that is produced using distributed generation | 7.4 | Xu hướng | E | Năng lượng | Count số lần Trip | ACB_BREAKER | 1 |
-| 20 | Face Terminal nào có tỷ lệ nhận diện thành công thấp nhất? | Đánh giá chất lượng thiết bị kiểm soát ra vào | Safety | Percentage of the city area covered by digital surveillance cameras | 15.1 | Top/bottom | G | An ninh | Tỷ lệ thành công nhận diện | Face Terminal | 1 |
-| 21 | Xu hướng tiêu thụ điện tổng hợp của toàn tòa nhà [tên] 30 ngày qua? | Theo dõi xu hướng năng lượng | Energy | Storage capacity of the city’s energy grid per total city energy consumption | 7.5 | Xu hướng | E | Năng lượng | Tổng kWh từ tất cả ACB_BREAKER | ACB_BREAKER | 1 |
-| 22 | COOLING_TOWER đang hoạt động ở công suất bao nhiêu %? | Giám sát hệ thống làm mát | Energy | Percentage of the city’s electricity that is produced using distributed generation | 7.4 | Truy vấn số liệu | E | Năng lượng | Lấy % công suất hiện tại | COOLING_TOWER | 1 |
-| 23 | Danh sách khu vực có EXHAUST_SMOKE_FAN đang chạy liên tục | Phát hiện bất thường hệ thống hút khói | Environment and climate change | Percentage of public and private building equipped for monitoring indoor air quality | 8.3 | Truy vấn số liệu | E | Môi trường | Lọc thiết bị chạy > 12h | EXHAUST_SMOKE_FAN | 1 |
-| 24 | SIEMENS_PXC4_DDC đang điều khiển những thiết bị nào? | Xem tổng quan hệ thống BMS | Housing | Percentage of houses with smart energy meters | 12.1 | Truy vấn số liệu | S | Cơ sở hạ tầng | Liệt kê thiết bị được điều khiển | SIEMENS_PXC4_DDC | 1 |
-| 25 | Top 5 camera có thời gian offline dài nhất trong tuần qua? | Ưu tiên sửa chữa camera | Safety | Percentage of the city area covered by digital surveillance cameras | 15.1 | Top/bottom | G | An ninh | Tổng thời gian offline | Hikvision Camera | 1 |
-| 26 | Mức tiêu thụ nước ước tính từ WATER_TANK_LEVEL trong tháng? | Theo dõi tiêu thụ nước | Water | Number of real-time environmental water quality monitoring stations | 23.2 | Truy vấn số liệu | E | Nước | Tính toán dựa trên thay đổi mực nước | WATER_TANK_LEVEL | 1 |
-| 27 | Có bao nhiêu FCU_FAN_COIL đang ở chế độ Economy? | Tối ưu hóa tiết kiệm năng lượng | Energy | Percentage of the city’s electricity that is produced using distributed generation | 7.4 | Truy vấn số liệu | E | Năng lượng | Count theo Mode | FCU_FAN_COIL | 1 |
-| 28 | Danh sách CO2_SENSOR có giá trị > 1000ppm | Cảnh báo khẩn cấp chất lượng không khí | Environment and climate change | Percentage of public and private building equipped for monitoring indoor air quality | 8.3 | Truy vấn số liệu | E | Môi trường | Lọc theo ngưỡng | CO2_SENSOR | 1 |
-| 29 | Trạng thái hiện tại của tất cả SUPPLY_PRESSURIZATION_FAN? | Kiểm tra hệ thống thông gió khẩn cấp | Safety | Percentage of the city area covered by digital surveillance cameras | 15.1 | Truy vấn số liệu | G | An ninh | List tất cả Status | SUPPLY_PRESSURIZATION_FAN | 1 |
-| 30 | Thiết bị nào có số lần lỗi cao nhất trong 14 ngày qua? | Phân tích độ tin cậy thiết bị | Housing | Percentage of houses with smart energy meters | 12.1 | Top/bottom | S | Cơ sở hạ tầng | Count Error events | All Devices | 1 |
-| 31 | Tỷ lệ thiết bị đang hoạt động (Uptime) của toàn hệ thống? | Đánh giá tổng thể hệ thống | Housing | Percentage of houses with smart energy meters | 12.1 | Truy vấn số liệu | S | Cơ sở hạ tầng | (Active / Total) × 100 | All Devices | 1 |
-| 32 | CHILLER nào đang tiêu thụ điện cao bất thường? | Phát hiện lãng phí năng lượng | Energy | Storage capacity of the city’s energy grid per total city energy consumption | 7.5 | Top/bottom | E | Năng lượng | So sánh với baseline | CHILLER | 1 |
-| 33 | Danh sách Face Terminal đang ở chế độ bảo trì | Quản lý lịch bảo trì | Safety | Percentage of the city area covered by digital surveillance cameras | 15.1 | Truy vấn số liệu | G | An ninh | Lọc Status = Maintenance | Face Terminal | 1 |
-| 34 | 3IN1 ENV SENSOR báo giá trị nhiệt độ/độ ẩm bất thường ở đâu? | Giám sát môi trường | Environment and climate change | Percentage of public and private building equipped for monitoring indoor air quality | 8.3 | Truy vấn số liệu | E | Môi trường | Lọc theo ngưỡng | 3IN1 ENV SENSOR | 1 |
-| 35 | Xu hướng mực nước WATER_TANK_LEVEL theo giờ trong 24h qua? | Phát hiện biến động đột ngột | Water | Number of real-time environmental water quality monitoring stations | 23.2 | Xu hướng | E | Nước | Time series mực nước | WATER_TANK_LEVEL | 1 |
-| 36 | Có bao nhiêu ACB_BREAKER đang ở trạng thái ON? | Tổng quan nguồn điện | Energy | Percentage of the city’s electricity that is produced using distributed generation | 7.4 | Truy vấn số liệu | E | Năng lượng | Count Status = ON | ACB_BREAKER | 1 |
-| 37 | Camera nào có chất lượng hình ảnh kém (low light / noise)? | Đánh giá chất lượng camera | Safety | Percentage of the city area covered by digital surveillance cameras | 15.1 | Truy vấn số liệu | G | An ninh | Phân tích thông số hình ảnh | Hikvision Camera | 1 |
-| 38 | SMART_BUTTON nào được bấm nhiều nhất trong tuần qua? | Phân tích hành vi sử dụng | Housing | Percentage of houses with smart energy meters | 12.1 | Top/bottom | S | Cơ sở hạ tầng | Count số lần bấm | SMART_BUTTON | 1 |
-| 39 | Tòa nhà [tên] có thiết bị nào đang ở chế độ khẩn cấp (Emergency)? | Cảnh báo sự cố | Safety | Percentage of the city area covered by digital surveillance cameras | 15.1 | Truy vấn số liệu | G | An ninh | Lọc Status = Emergency | All Devices | 1 |
-| 40 | Tiêu thụ điện trung bình mỗi giờ của COOLING_TOWER? | Tối ưu vận hành | Energy | Storage capacity of the city’s energy grid per total city energy consumption | 7.5 | Truy vấn số liệu | E | Năng lượng | Trung bình kWh/giờ | COOLING_TOWER | 1 |
-| 41 | Danh sách EXHAUST_SMOKE_FAN chạy khi không có báo cháy | Phát hiện vận hành sai | Safety | Percentage of the city area covered by digital surveillance cameras | 15.1 | Truy vấn số liệu | G | An ninh | Lọc chạy không có trigger báo cháy | EXHAUST_SMOKE_FAN | 1 |
-| 42 | SIEMENS_PXC4_DDC có báo lỗi kết nối với thiết bị con nào? | Kiểm tra hệ thống điều khiển trung tâm | Housing | Percentage of houses with smart energy meters | 12.1 | Truy vấn số liệu | S | Cơ sở hạ tầng | Liệt kê lỗi kết nối | SIEMENS_PXC4_DDC | 1 |
-| 43 | Top khu vực có thời gian FCU_FAN_COIL chạy dài nhất? | Phân tích nhu cầu điều hòa | Energy | Percentage of the city’s electricity that is produced using distributed generation | 7.4 | Top/bottom | E | Năng lượng | Tổng giờ chạy | FCU_FAN_COIL | 1 |
-| 44 | Nồng độ CO2 trung bình theo tầng trong tòa nhà [tên]? | Báo cáo chất lượng không khí theo khu vực | Environment and climate change | Percentage of public and private building equipped for monitoring indoor air quality | 8.3 | Truy vấn số liệu | E | Môi trường | Average theo tầng | CO2_SENSOR | 1 |
-| 45 | Danh sách thiết bị có firmware lỗi thời? | Quản lý cập nhật hệ thống | Housing | Percentage of houses with smart energy meters | 12.1 | Truy vấn số liệu | S | Cơ sở hạ tầng | So sánh version firmware | All Devices | 1 |
-| 46 | WATER_TANK_LEVEL có nguy cơ cạn trong bao nhiêu giờ tới? | Dự báo nguồn nước | Water | Number of real-time environmental water quality monitoring stations | 23.2 | Giải thích dữ liệu | E | Nước | Dự báo dựa trên tốc độ giảm | WATER_TANK_LEVEL | 1 |
-| 47 | Tỷ lệ uptime của toàn bộ Hikvision Camera trong tháng? | Đánh giá độ tin cậy an ninh | Safety | Percentage of the city area covered by digital surveillance cameras | 15.1 | Truy vấn số liệu | G | An ninh | (Online time / Total time) | Hikvision Camera | 1 |
-| 48 | Thiết bị nào đang tiêu thụ điện cao hơn 20% so với trung bình? | Phát hiện lãng phí | Energy | Storage capacity of the city’s energy grid per total city energy consumption | 7.5 | Top/bottom | E | Năng lượng | So sánh với baseline | ACB_BREAKER + All | 1 |
-| 49 | Danh sách SMART_BUTTON và chức năng tương ứng đang hoạt động | Tổng quan nút bấm thông minh | Housing | Percentage of houses with smart energy meters | 12.1 | Truy vấn số liệu | S | Cơ sở hạ tầng | List tên + chức năng | SMART_BUTTON | 1 |
-| 50 | Tổng quan sức khỏe hệ thống (tất cả thiết bị) hôm nay? | Báo cáo dashboard quản lý | Housing | Percentage of houses with smart energy meters | 12.1 | Truy vấn số liệu | S | Cơ sở hạ tầng | % Active, % Warning, % Error | All Devices | 1 |
+# AI/LLM Chat with SMC Data Platform — Tài liệu PoC (AC1–AC4)
+
+**Project:** AI/LLM Chat with SMC Data Platform  
+**Mentor:** Phạm Văn Dương (v.duongpv15@vinsmartfuture.tech)  
+**Intern 1:** Nguyễn Hoàng Khải Minh (26ai.minhnhk@vinuni.edu.vn)  
+**Intern 2:** Nguyễn Quốc Nam (26ai.namnq@vinuni.edu.vn)  
+**Thời gian:** 6 tuần
+
+---
+
+## AC1 — Product Backlog cho PoC (Must-have / Should-have / Could-have)
+
+### 1.1 Bối cảnh lý luận và phân loại hệ thống
+Dự án AI/LLM Chat with SMC Data Platform thuộc nhóm **Natural Language Interface for Databases (NLIDB)**. Theo khảo sát của Liu & Xu (2025) *"NLI4DB: A Systematic Review of Natural Language Interfaces for Databases"* (arXiv:2503.02435), các hệ thống NLIDB hiện đại dựa trên LLM bao gồm các lớp cốt lõi: Natural Language Understanding, Schema Linking, SQL Generation & Execution, và Answer Synthesis.
+
+Backlog Must-have bao phủ đầy đủ các thành phần theo thiết kế NL2SQL production-ready của Mahakali (2025).
+
+### 1.2 Nền tảng domain: ISO Smart City & ESG Indicators
+SMC Data Platform được xây dựng theo:
+- ISO 37120:2018 (104 KPIs trên 19 chủ đề)
+- ISO 37122:2019 (Smart City Indicators)
+- ISO 37125:2024 (ESG Indicators for Cities)
+
+### 🔴 Must-have (15 items)
+
+#### Nhóm A — Input & Pipeline Core
+| ID | Chức năng | Mô tả | Tuần |
+|----|-----------|-------|------|
+| M-01 | Nhận câu hỏi tiếng Việt | Web UI (Streamlit/React) hoặc API `/ask` | T3 |
+| M-02 | Sinh SQL từ câu hỏi (Text-to-SQL) | LLM sinh SQL cho StarRocks với schema context | T3 |
+| M-03 | Whitelist bảng/cột | File YAML quản lý bảng/cột được phép | T2 |
+| M-04 | Validate SQL trước khi thực thi | Kiểm tra cú pháp, whitelist, nguy hiểm commands | T3–4 |
+| M-05 | Thực thi truy vấn trên StarRocks | Kết nối JDBC/MySQL protocol | T4 |
+| M-06 | Trả lời tự nhiên từ kết quả DB | LLM tổng hợp kết quả thành tiếng Việt | T3 |
+| M-07 | Logging toàn pipeline | Log JSON chi tiết từng bước | T3–4 |
+| M-08 | Xử lý lỗi & fallback | Xử lý ≥6 loại lỗi phổ biến | T3–4 |
+
+#### Nhóm B — Intelligence & Quality
+| ID | Chức năng | Mô tả | Tuần |
+|----|-----------|-------|------|
+| M-09 | Semantic Layer (Business Term Mapping) | YAML mapping thuật ngữ nghiệp vụ | T5 |
+| M-10 | System prompt chuẩn hóa cho Smart City | Prompt domain-specific + few-shot | T5 |
+| M-11 | Báo cáo so sánh trước/sau cải tiến | So sánh 30 câu hỏi baseline vs improved | T5 |
+
+#### Nhóm C — UX & Security
+| ID | Chức năng | Mô tả | Tuần |
+|----|-----------|-------|------|
+| M-12 | Lịch sử hội thoại (multi-turn) | Giữ context 5 lượt | T4 |
+| M-13 | Hiển thị SQL sinh ra (Transparency) | Toggle xem SQL | T3–4 |
+| M-14 | Phân quyền dữ liệu theo role | RBAC (viewer/analyst/admin) | T4 |
+| M-15 | Hỗ trợ đa ngôn ngữ (VN/EN) | Detect và trả lời đúng ngôn ngữ | T3 |
+
+### 🟡 Should-have (5 items)
+- S-01: Giao diện quản trị whitelist
+- S-02: Caching kết quả truy vấn
+- S-03: Phát hiện câu hỏi ngoài phạm vi
+- S-04: Gợi ý câu hỏi liên quan
+- S-05: Export kết quả (CSV/Excel)
+
+### 🟢 Could-have (5 items)
+- C-01: Monitoring dashboard
+- C-02: Đánh giá câu trả lời (thumbs up/down)
+- C-03: Alert KPI vượt ngưỡng
+- C-04: Trực quan hóa biểu đồ
+- C-05: Tích hợp SSO
+
+---
+
+## AC2 — Kế hoạch triển khai 6 tuần & Phân công vai trò
+
+**Intern 1 (Minh):** AI/LLM Engineer (Prompt, Text-to-SQL, Semantic Layer)  
+**Intern 2 (Nam):** Backend/Data Engineer (StarRocks, API, Validator, Logging)
+
+### Tuần 1–2: Nền tảng & Kiến trúc
+- Tuần 1: Phân tích nghiệp vụ, khảo sát schema, xây dựng 30 câu hỏi test
+- Tuần 2: Thiết kế kiến trúc, API spec, prompt v1, test plan
+
+### Tuần 3–4: Xây dựng PoC Core
+- Tuần 3: Web UI, Text-to-SQL pipeline, API, Whitelist
+- Tuần 4: Kết nối StarRocks, Validator, Logging, Baseline Evaluation
+
+### Tuần 5–6: Cải tiến & Hoàn thiện
+- Tuần 5: Semantic Layer, Prompt v2, Post-improvement Evaluation
+- Tuần 6: Tài liệu, API docs, Roadmap, Demo
+
+---
+
+## AC3 — Bộ tiêu chí đánh giá PoC
+
+**5 Tiêu chí chính:**
+
+1. **SQL Accuracy** (Execution Accuracy) → Target: ≥80% (Post)
+2. **Answer Quality** (RAGAS-based) → Target: ≥3.8/5
+3. **Response Time** (p90 End-to-End) → Target: <10s
+4. **Error Handling** → Target: ≥80%
+5. **Extensibility** → Target: ≥7/10
+
+Đánh giá 2 lần: Baseline (tuần 4) và Post-improvement (tuần 5).
+
+---
+
+## AC4 — Bộ 30 câu hỏi test
+
+**Nhóm 1: Môi trường & Chất lượng không khí** (5 câu)  
+**Nhóm 2: Năng lượng & Tiêu thụ điện** (5 câu)  
+**Nhóm 3: Giao thông & Di chuyển** (5 câu)  
+**Nhóm 4: Nước & Vệ sinh** (5 câu)  
+**Nhóm 5: Dân số & Dịch vụ xã hội** (5 câu)  
+**Nhóm 6: Kinh tế & ESG** (5 câu)
+
+*(Chi tiết 30 câu hỏi + ground truth SQL mô tả nằm trong tài liệu gốc)*
+
+---
+
+**Tài liệu này được tạo phục vụ PoC — Tháng 6/2025**
