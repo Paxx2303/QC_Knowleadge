@@ -261,30 +261,33 @@ SQL Execution Accuracy (EX) = Σ điểm từng câu / (Tổng số câu có SQL
 
 ### Tiêu chí 2 — Độ đúng câu trả lời (Answer Quality)
 
-**Định nghĩa:** Mức độ câu trả lời tự nhiên cuối cùng của chatbot phản ánh đúng, đầy đủ và rõ ràng nội dung dữ liệu trả về từ DB.
+**Định nghĩa:**  
+Mức độ câu trả lời tự nhiên cuối cùng của chatbot phản ánh **đúng, đầy đủ, trung thực, liên quan** và **tương đồng** với dữ liệu trả về từ cơ sở dữ liệu cũng như ý định của người dùng.
 
-**Cơ sở khoa học:** Framework **RAGAS** (Es et al., 2023) định nghĩa hai metric chính cho Answer Quality: **Faithfulness** (câu trả lời có mâu thuẫn với dữ liệu context không?) và **Answer Relevancy** (câu trả lời có đúng trọng tâm câu hỏi không?). Theo MDPI Electronics (2025): *"RAGAS is specifically designed for RAG systems, evaluating not just lexical overlaps but the alignment between the generated answer and retrieved context."* Theo Confident AI (2025): *"No single metric tells the whole story. A system might have high answer relevancy but low faithfulness."* Do đó cần đánh giá cả hai chiều.
+**Cơ sở khoa học:**  
+Framework **RAGAS** (Es et al., 2023) cung cấp bộ metrics chuẩn để đánh giá chất lượng câu trả lời trong các hệ thống dựa trên LLM. PoC này sử dụng 4 metrics chính: **Faithfulness**, **Answer Relevancy**, **Answer Correctness** và **Answer Similarity**. 
 
-Ngoài ra, trong context Smart City, cần thêm chiều **Clarity** — câu trả lời có dễ hiểu với người dùng không có nền tảng kỹ thuật không?
+Theo Confident AI (2025): *"No single metric tells the whole story."* Việc kết hợp nhiều metrics giúp đánh giá toàn diện hơn.
 
-**Ba chiều đánh giá (dùng để tính điểm):**
+**Bốn metrics đánh giá:**
 
-| Chiều | Ký hiệu | Trọng số | Định nghĩa | Thang điểm |
-|-------|---------|----------|------------|------------|
-| **Faithfulness** | F | 40% | Câu trả lời không mâu thuẫn với dữ liệu DB trả về (không hallucinate số liệu, đơn vị đúng, tên chỉ số đúng) | 1–5 |
-| **Answer Relevancy** | R | 35% | Câu trả lời đúng trọng tâm câu hỏi, không lan man, không bỏ sót thông tin key | 1–5 |
-| **Clarity** | C | 25% | Câu tiếng Việt tự nhiên, dễ hiểu với người dùng nghiệp vụ phi kỹ thuật, có đơn vị và ngữ cảnh phù hợp | 1–5 |
+| Metric                  | Ký hiệu | Trọng số | Định nghĩa |
+|-------------------------|---------|----------|----------|
+| **Faithfulness**        | F       | 30%      | Câu trả lời có trung thực với dữ liệu từ DB hay không (không hallucinate số liệu, đơn vị, tên chỉ số). |
+| **Answer Relevancy**    | R       | 25%      | Câu trả lời có đúng trọng tâm, liên quan trực tiếp đến câu hỏi và không lan man. |
+| **Answer Correctness**  | AC      | 25%      | Câu trả lời có chính xác về mặt sự kiện so với ground truth. |
+| **Answer Similarity**   | AS      | 20%      | Mức độ tương đồng ngữ nghĩa giữa câu trả lời sinh ra và câu trả lời mong đợi. |
 
-> **Lưu ý:** Tổng trọng số ba chiều = 40% + 35% + 25% = **100%**.
+**Thang điểm chi tiết (1–5):**
 
-**Công thức tính Weighted Score:**
-```
-Answer Quality Score = (F × 0.40) + (R × 0.35) + (C × 0.25)
-```
-
-**Ví dụ:** F = 4, R = 3, C = 5 → Score = (4 × 0.40) + (3 × 0.35) + (5 × 0.25) = 1.60 + 1.05 + 1.25 = **3.90 / 5**
-
-**Ngưỡng chấp nhận:**
+| Điểm | Faithfulness                                      | Answer Relevancy                                      | Answer Correctness                                   | Answer Similarity                                    |
+|------|---------------------------------------------------|-------------------------------------------------------|------------------------------------------------------|------------------------------------------------------|
+| **5** | Hoàn toàn trung thực, không hallucinate           | Rất liên quan, tập trung cao vào câu hỏi             | Hoàn toàn chính xác với ground truth                 | Tương đồng ngữ nghĩa gần như tuyệt đối              |
+| **4** | Trung thực cao, chỉ sai sót nhỏ về format         | Liên quan tốt, thiếu rất ít thông tin phụ            | Chính xác phần lớn, sai sót nhỏ                      | Tương đồng cao về ý nghĩa                            |
+| **3** | Có một số sai sót nhỏ hoặc thiếu dẫn chứng        | Đúng chủ đề nhưng hơi chung chung                    | Đúng một phần, có lỗi trung bình                     | Tương đồng trung bình                                |
+| **2** | Có hallucinate hoặc sai lệch đáng kể              | Lạc đề một phần                                       | Sai khá nhiều so với ground truth                    | Tương đồng thấp                                      |
+| **1** | Hallucinate nghiêm trọng, mâu thuẫn với DB       | Hoàn toàn không liên quan                             | Sai hoàn toàn hoặc bịa đặt                           | Gần như không tương đồng                             |
+|**Ngưỡng chấp nhận:**| 3| 3| 3 | 3|
 
 | Đợt | Ngưỡng Weighted Score | Ghi chú |
 |-----|----------------------|---------|
